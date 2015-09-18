@@ -11,7 +11,7 @@ import android.app.*;
 import android.graphics.drawable.*;
 import android.widget.*;
 
-public class ImagePref extends StartPref implements ImageHandler.ImageHandlerReceiver{
+public class ImagePref extends StartPref{
 	Handler h=new Handler();
 	View v;
 	public ImagePref(Context c,AttributeSet attrs){
