@@ -1,7 +1,5 @@
 package com.nao20010128nao.MCPE.SC;
 import android.app.*;
-import android.content.res.*;
-import android.content.*;
 
 public class RunOnceApplication extends Application {
 	boolean isCheckedMCPE=false;

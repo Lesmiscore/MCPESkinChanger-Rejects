@@ -1,14 +1,11 @@
 package pref;
-import android.util.*;
-import android.content.*;
-import android.view.*;
-import com.nao20010128nao.MC_PE.SkinChanger.*;
-import com.nao20010128nao.MCPE.SC.*;
-import android.graphics.*;
-import java.io.*;
-import android.os.*;
 import android.app.*;
+import android.content.*;
+import android.graphics.*;
 import android.graphics.drawable.*;
+import android.os.*;
+import android.util.*;
+import android.view.*;
 import android.widget.*;
 
 public class ImagePref extends StartPref{

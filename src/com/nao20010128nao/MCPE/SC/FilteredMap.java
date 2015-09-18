@@ -1,6 +1,6 @@
 package com.nao20010128nao.MCPE.SC;
-import java.util.*;
 import java.net.*;
+import java.util.*;
 
 public class FilteredMap extends HashMap<String,URI> {
 	static Set<String> defaultBans=new HashSet<>();

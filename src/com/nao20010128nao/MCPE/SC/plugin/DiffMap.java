@@ -1,6 +1,5 @@
 package com.nao20010128nao.MCPE.SC.plugin;
 import java.util.*;
-import java.util.Map.*;
 
 public class DiffMap<K,V> implements Map<K,V> {
 	Map<K,V> base,diff=new HashMap<>();
