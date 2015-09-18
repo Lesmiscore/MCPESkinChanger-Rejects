@@ -4,7 +4,7 @@ import android.content.*;
 import android.net.*;
 import android.os.*;
 import com.nao20010128nao.MCPE.SC.misc.*;
-import com.nao20010128nao.MC_PE.SkinChanger.*;
+import com.nao20010128nao.MC_PE.SkinChanger.REJECTED.*;
 import com.nao20010128nao.ToolBox.HandledPreference.*;
 import java.lang.ref.*;
 

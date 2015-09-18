@@ -2,7 +2,7 @@ package com.nao20010128nao.MCPE.SC;
 import android.content.*;
 import android.content.pm.*;
 import android.content.pm.PackageManager.*;
-import com.nao20010128nao.MC_PE.SkinChanger.*;
+import com.nao20010128nao.MC_PE.SkinChanger.REJECTED.*;
 import android.content.res.*;
 import java.util.*;
 import android.util.*;
