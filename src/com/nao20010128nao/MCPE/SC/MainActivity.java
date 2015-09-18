@@ -1,25 +1,12 @@
 package com.nao20010128nao.MCPE.SC;
 
-import android.app.*;
 import android.content.*;
-import android.content.pm.*;
 import android.net.*;
 import android.os.*;
-import android.preference.*;
-import android.util.*;
-import android.widget.*;
-import com.nao20010128nao.MC_PE.SkinChanger.*;
-import com.nao20010128nao.SpoofBrowser.classes.*;
-import com.nao20010128nao.ToolBox.*;
-import com.nao20010128nao.ToolBox.HandledPreference.*;
-import java.io.*;
-import java.lang.ref.*;
-import java.net.*;
-import java.util.*;
-import android.content.pm.PackageManager.*;
-import android.content.res.Resources.*;
 import com.nao20010128nao.MCPE.SC.misc.*;
-import com.nao20010128nao.MCPE.SC.plugin.*;
+import com.nao20010128nao.MC_PE.SkinChanger.*;
+import com.nao20010128nao.ToolBox.HandledPreference.*;
+import java.lang.ref.*;
 
 public class MainActivity extends SHablePreferenceActivity {
 	public static WeakReference<MainActivity> instance=new WeakReference<>(null);
@@ -31,21 +18,6 @@ public class MainActivity extends SHablePreferenceActivity {
         super.onCreate(savedInstanceState);
 		instance = new WeakReference<MainActivity>(this);
        	addPreferencesFromResource(R.xml.pref_main);
-		sH("startChange", new OnClickListener(){
-				public void onClick(String p1, String p2, String p3) {
-				
-				}
-			});
-		sH("wantUpdate", new OnClickListener(){
-				public void onClick(String p1, String p2, String p3) {
-					for (ResolveInfo i:getPackageManager().queryIntentActivities(new Intent().setAction("android.intent.action.VIEW").setData(Uri.parse("http://play.google.com/store/apps/details?id=com.mojang.minecraftpe")), 0)) {
-						Log.d("dbg", i.activityInfo.packageName + ";" + i.activityInfo.name);
-						if (i.activityInfo.packageName.equals("com.android.vending")) {
-							startActivity(new Intent().setClassName(i.activityInfo.packageName, i.activityInfo.name).setAction("android.intent.action.VIEW").setData(Uri.parse("http://play.google.com/store/apps/details?id=com.mojang.minecraftpe")));
-						}
-					}
-				}
-			});
 		link("selectSteve", "assets/images/mob/char.png");
 		link("selectSteveN", "assets/images/mob/steve.png");
 		link("selectAlexN", "assets/images/mob/alex.png");
@@ -101,11 +73,6 @@ public class MainActivity extends SHablePreferenceActivity {
 	}
 	void link(String pref,String name){
 		sH(pref,createListenerForPerf(name));
-		Object data=findPreference(pref);
-		if(data instanceof ImageHandler.ImageHandlerReceiver){
-			String[] arr;
-			ImageHandler.registerReceiver((arr=name.split("¥¥/"))[arr.length-1],(ImageHandler.ImageHandlerReceiver)data);
-		}
 	}
 	OnClickListener createListenerForPerf(final String name){
 		return new OnClickListener(){
@@ -113,18 +80,5 @@ public class MainActivity extends SHablePreferenceActivity {
 				selectFileForSkin(name);
 			}
 		};
-	}
-	public static void preventStart(){
-		preventStart=true;
-	}
-	String getApkPath() throws PackageManager.NameNotFoundException {
-		switch (Tools.getSettings("input.mode", 0, this)) {
-			case 0://installed
-				return createPackageContext("com.mojang.minecraftpe", CONTEXT_IGNORE_SECURITY).getPackageCodePath();
-			case 1://select
-				return Tools.getSettings("input.where", "", this);
-			default:
-				return null;
-		}
 	}
 }
