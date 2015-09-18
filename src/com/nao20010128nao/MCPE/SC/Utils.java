@@ -35,7 +35,7 @@ public class Utils
 	
 	public static String getBetaVersion(Context c){
 		Resources res=c.getResources();
-		int build=res.getInteger(R.integer.beta);
+		int build=0;
 		if(build==0){
 			return res.getString(R.string.notbeta);
 		}else{
