@@ -33,16 +33,6 @@ public class Utils
         return versionName;
 	}
 	
-	public static String getBetaVersion(Context c){
-		Resources res=c.getResources();
-		int build=0;
-		if(build==0){
-			return res.getString(R.string.notbeta);
-		}else{
-			return res.getString(R.string.onbeta).replace("@BETA@",Integer.toString(build));
-		}
-	}
-	
 	public static class MobNames{
 		private static final Map<String,Integer> fromFileName;
 		static{
