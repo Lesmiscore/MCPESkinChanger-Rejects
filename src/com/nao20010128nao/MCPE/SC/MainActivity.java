@@ -11,6 +11,7 @@ import com.nao20010128nao.MCPE.SC.plugin.*;
 import java.io.*;
 import android.util.*;
 import java.net.*;
+import android.app.*;
 
 public class MainActivity extends SHablePreferenceActivity {
 	public static WeakReference<MainActivity> instance=new WeakReference<>(null);
@@ -28,7 +29,7 @@ public class MainActivity extends SHablePreferenceActivity {
 			data = PluginUtils.getMapFromIntent(getIntent());
 		} catch (IOException e) {
 			setResult(RESULT_CANCELED);
-			finish();
+			finishF();
 		}
 		/*Rejected changes*/
 		link("selectCaveSpider","assets/images/mob/cave_spider.tga",MIME_TGA);
@@ -44,7 +45,7 @@ public class MainActivity extends SHablePreferenceActivity {
     }
 	void selectFileForSkin(String name,String mime){
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-		intent.setType(mime);
+		intent.setType("*/*");
 		changeTmp = name;
 		startActivityForResult(intent, 123);
 	}
@@ -106,5 +107,38 @@ public class MainActivity extends SHablePreferenceActivity {
 				}
 			}
 		}.start();
+	}
+	@Override
+	public void finish() {
+		// Finish the activity with prompt
+		// Reverse Positive and Negative because prevent finishing the activity by mistakes
+		new AlertDialog.Builder(this)
+			.setPositiveButton(android.R.string.no,new DialogInterface.OnClickListener(){public void onClick(DialogInterface di,int which){}})
+			.setNegativeButton(android.R.string.yes,new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface di,int which){
+					finishF();
+				}
+			})
+			.setNeutralButton(R.string.saveAndFinish,new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface di,int which){
+					finishS();
+				}
+			})
+			.setMessage(R.string.askExit)
+			.show();
+	}
+	public void finishF() {
+		// Finish the activity without prompt
+		setResult(RESULT_CANCELED);
+		super.finish();
+	}
+	public void finishS() {
+		// Upload changes and finish the activity
+		Intent i=new Intent();
+		try {
+			PluginUtils.putDiffIntoIntent(data, i);
+		} catch (IOException e) {}
+		setResult(RESULT_OK,i);
+		finishF();
 	}
 }
