@@ -14,7 +14,7 @@ import java.net.*;
 
 public class MainActivity extends SHablePreferenceActivity {
 	public static WeakReference<MainActivity> instance=new WeakReference<>(null);
-	static final String MIME_TGA="image/tga";
+	static final String MIME_TGA="image/targa";
 	static boolean preventStart=false;
 	volatile String changeTmp=null;
 	DiffMap<String,byte[]> data;
