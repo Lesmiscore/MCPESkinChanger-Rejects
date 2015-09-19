@@ -12,6 +12,7 @@ import java.io.*;
 
 public class MainActivity extends SHablePreferenceActivity {
 	public static WeakReference<MainActivity> instance=new WeakReference<>(null);
+	static final String MIME_TGA="image/tga";
 	static boolean preventStart=false;
 	String changeTmp=null;
 	DiffMap<String,byte[]> data;
@@ -38,7 +39,7 @@ public class MainActivity extends SHablePreferenceActivity {
     }
 	void selectFileForSkin(String name,String mime){
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-		intent.setType("image/png");
+		intent.setType(mime);
 		changeTmp = name;
 		startActivityForResult(intent, 123);
 	}
