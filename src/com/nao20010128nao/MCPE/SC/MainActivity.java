@@ -16,7 +16,7 @@ public class MainActivity extends SHablePreferenceActivity {
 	public static WeakReference<MainActivity> instance=new WeakReference<>(null);
 	static final String MIME_TGA="image/tga";
 	static boolean preventStart=false;
-	String changeTmp=null;
+	volatile String changeTmp=null;
 	DiffMap<String,byte[]> data;
     /** Called when the activity is first created. */
     @Override
@@ -83,7 +83,7 @@ public class MainActivity extends SHablePreferenceActivity {
 						if(r<=0)break;
 						baos.write(buf,0,r);
 					}
-					data.put(path,baos.toByteArray());
+					data.put(changeTmp,baos.toByteArray());
 				}catch(Throwable e){
 					e.printStackTrace();
 				}finally{
@@ -92,6 +92,7 @@ public class MainActivity extends SHablePreferenceActivity {
 					} catch (Throwable e) {
 						
 					}
+					changeTmp=null;
 				}
 			}
 			InputStream tryOpen(String uri) throws IOException {
