@@ -139,6 +139,6 @@ public class MainActivity extends SHablePreferenceActivity {
 			PluginUtils.putDiffIntoIntent(data, i);
 		} catch (IOException e) {}
 		setResult(RESULT_OK,i);
-		finishF();
+		super.finish();
 	}
 }
