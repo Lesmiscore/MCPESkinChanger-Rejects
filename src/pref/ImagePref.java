@@ -27,7 +27,6 @@ public class ImagePref extends StartPref{
 		return v;
 	}
 	
-	@Override
 	public void setImage(Bitmap bmp) {
 		// TODO: Implement this method
 		bmp=Bitmap.createScaledBitmap(bmp,bmp.getWidth()*20,bmp.getHeight()*20,true);
